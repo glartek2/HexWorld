@@ -51,10 +51,20 @@ Forest = t.Terrain(Forest_image, 2)
 Terrains = [Desert, Field, Water, Mountain, Forest]
 
 
+#Load Bonuses Images
+Mine_image = pygame.image.load("resources/bons/mine.png")
+Fruits_image = pygame.image.load("resources/bons/fruits.png")
+Magic_Source_image = pygame.image.load("resources/bons/magic_source.png")
+
+
 # Define Bonuses
-Fruits = bons.Bonus("Fruits")
-Mine = bons.Bonus("Mine")
-Magic_Source = bons.Bonus("Magic Source")
-NoneBonus = bons.Bonus("None")
+Fruits = bons.Bonus(pygame.transform.scale(Fruits_image,
+                                        (Fruits_image.get_width() * scale, Fruits_image.get_height() * scale )))
+Mine = bons.Bonus(pygame.transform.scale(Mine_image,
+                                        (Mine_image.get_width() * scale, Mine_image.get_height() * scale )))
+Magic_Source = bons.Bonus(pygame.transform.scale(Magic_Source_image,
+                                        (Magic_Source_image.get_width() * scale, Magic_Source_image.get_height() * scale )))
+
+NoneBonus = bons.Bonus(None)
 Bonuses = [Fruits, Mine, Magic_Source, NoneBonus]
 weights_bonus = [2, 1, 1, 4]

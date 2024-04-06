@@ -1,7 +1,5 @@
 
 
-
-
 class Bonus:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, image):
+        self.image = image

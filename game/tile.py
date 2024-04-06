@@ -10,6 +10,7 @@ class Tile:
         self.bon = bon
         self.image = image
         self.num = num
+        self.defence = terrain.defence
 
     def getX(self, x_offset, gap):
         image_width = self.image.get_rect().width
@@ -20,7 +21,7 @@ class Tile:
             fudge_factor = self.col * 2
             return int((self.col * (image_width + gap) - fudge_factor))
 
-    def getY(self, height_adjust, scale=100):
+    def getY(self, height_adjust):
         return int((self.row * height_adjust))
 
     def draw(self, screen, x_offset, gap, height_adjust):
@@ -31,12 +32,5 @@ class Tile:
 
         # Draw bonus (if any)
         if self.bon != con.NoneBonus:
-            font = pygame.font.Font(None, 24)
-            text_surface = font.render(str(self.num), True, (0, 0, 0))
-            text_rect = text_surface.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
-            screen.blit(text_surface, text_rect)
-        else:
-            font = pygame.font.Font(None, 24)
-            text_surface = font.render(str(self.num), True, (0, 0, 0))
-            text_rect = text_surface.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
-            screen.blit(text_surface, text_rect)
+            bon_rect = self.bon.image.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
+            screen.blit(self.bon.image, bon_rect)
