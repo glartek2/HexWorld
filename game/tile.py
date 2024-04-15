@@ -34,3 +34,12 @@ class Tile:
         if self.bon != con.NoneBonus:
             bon_rect = self.bon.image.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
             screen.blit(self.bon.image, bon_rect)
+
+        # Draw the number
+        font = pygame.font.Font(None, 36)  # You can change the font and size as needed
+        text_surface = font.render(str(self.num), True, (255, 0, 0))
+        text_rect = text_surface.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
+        screen.blit(text_surface, text_rect)
+
+    def update_defence(self, bonus_defence):
+        self.defence = self.terrain.defence + bonus_defence

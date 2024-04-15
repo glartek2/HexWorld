@@ -14,7 +14,7 @@ screen_width, screen_height = 1200, 800
 
 
 # Indexes of neighbours
-positions = [-2*map_width, -(map_width+1), map_width+1, 2*map_width, map_width, -map_width]
+positions = [(2, 0), (1, -1), (1, 0), (-2, 0), (-1, 0), (-1, -1)]
 
 
 # Calculate offset to center the map within the window
@@ -34,6 +34,9 @@ GREEN = (0, 255, 0)
 BROWN = (139, 69, 19)
 YELLOW = (255, 255, 0)
 DARK_GREEN = (10, 90, 10)
+RED = (255, 0, 0)
+
+player_colors = [BLUE, RED, GREEN, YELLOW]
 
 # Load terrain images
 Mountain_image = pygame.image.load("resources/terrains/mountain_snow.png")
