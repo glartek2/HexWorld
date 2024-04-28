@@ -26,6 +26,7 @@ offset_y = 221 * scale
 gap = 258 * scale # gap between hexes
 
 
+
 # Define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -71,3 +72,17 @@ Magic_Source = bons.Bonus(pygame.transform.scale(Magic_Source_image,
 NoneBonus = bons.Bonus(None)
 Bonuses = [Fruits, Mine, Magic_Source, NoneBonus]
 weights_bonus = [2, 1, 1, 4]
+
+
+
+
+# Button properties
+button_width = 180
+button_height = 120
+button_spacing = 20
+button_x = (map_width * 2 - 1) * tile_width * scale
+attack_button_y = 100
+defense_button_y = attack_button_y + button_height + button_spacing
+extinction_button_y = defense_button_y + button_height + button_spacing
+end_turn_button_y = extinction_button_y + button_height + button_spacing
+

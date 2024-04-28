@@ -35,9 +35,9 @@ class Tile:
             bon_rect = self.bon.image.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
             screen.blit(self.bon.image, bon_rect)
 
-        # Draw the number
+        # Draw the number - for debug
         font = pygame.font.Font(None, 36)  # You can change the font and size as needed
-        text_surface = font.render(str(self.num), True, (255, 0, 0))
+        text_surface = font.render(str(self.defence), True, (255, 0, 0))
         text_rect = text_surface.get_rect(center=(x + self.image.get_width() / 2, y + self.image.get_height() / 2))
         screen.blit(text_surface, text_rect)
 
