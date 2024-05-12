@@ -2,7 +2,7 @@ import abilities
 import spieces
 
 
-class Civ():
+class Civilization():
     def __init__(self, spieces, abilities):
         self.spieces = spieces
         self.ability = abilities

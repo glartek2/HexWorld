@@ -2,7 +2,7 @@ import player
 import pygame
 import sys
 from constant import BLACK, WHITE, screen_width, screen_height, scale, button_width, map_width, map_height
-from draw_buttons import draw_button
+from draw_functions import draw_button
 
 pygame.font.init()
 
@@ -43,14 +43,20 @@ def settings(screen):
         screen.fill(BLACK)
 
         # Draw "+" and "-" buttons for rows and columns
-        minus_rows_rect = draw_button(screen, "-", "resources/buttons/button.png", screen_width // 3 - 150, screen_height // 4 - 50)
-        plus_rows_rect = draw_button(screen, "+", "resources/buttons/button.png", screen_width * 2 // 3 - 50, screen_height // 4 - 50)
-        minus_cols_rect = draw_button(screen, "-", "resources/buttons/button.png", screen_width // 3 - 150, screen_height // 3)
-        plus_cols_rect = draw_button(screen, "+", "resources/buttons/button.png", screen_width * 2 // 3 - 50, screen_height // 3)
+        minus_rows_rect = draw_button(screen, "-", "resources/buttons/button.png",
+                                      screen_width // 3 - 150, screen_height // 4 - 50)
+        plus_rows_rect = draw_button(screen, "+", "resources/buttons/button.png",
+                                     screen_width * 2 // 3 - 50, screen_height // 4 - 50)
+        minus_cols_rect = draw_button(screen, "-", "resources/buttons/button.png",
+                                      screen_width // 3 - 150, screen_height // 3)
+        plus_cols_rect = draw_button(screen, "+", "resources/buttons/button.png",
+                                     screen_width * 2 // 3 - 50, screen_height // 3)
 
         # Draw "+" and "-" buttons for number of players
-        minus_players_rect = draw_button(screen, "-", "resources/buttons/button.png", screen_width // 3 - 50, screen_height // 2 + 50)
-        plus_players_rect = draw_button(screen, "+", "resources/buttons/button.png", screen_width * 2 // 3 - 150, screen_height // 2 + 50)
+        minus_players_rect = draw_button(screen, "-", "resources/buttons/button.png",
+                                         screen_width // 3 - 50, screen_height // 2 + 50)
+        plus_players_rect = draw_button(screen, "+", "resources/buttons/button.png",
+                                        screen_width * 2 // 3 - 150, screen_height // 2 + 50)
 
         # Draw number of rows and columns
         text_surface = font.render("Map Size", True, WHITE)
@@ -75,7 +81,8 @@ def settings(screen):
         screen.blit(text_surface, text_rect)
 
         # Draw "Play" button
-        play_button_rect = draw_button(screen, "Play", "resources/buttons/button.png",screen_width // 2 - 100, screen_height * 2 // 3)
+        play_button_rect = draw_button(screen, "Play", "resources/buttons/button.png",
+                                       screen_width // 2 - 100, screen_height * 2 // 3)
 
         # Event handling
         for event in pygame.event.get():

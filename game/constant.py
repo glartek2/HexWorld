@@ -3,6 +3,7 @@ import terrain as t
 import math
 import pygame
 
+pygame.mixer.init()
 
 # Generate map
 tile_width = 508
@@ -74,6 +75,11 @@ Bonuses = [Fruits, Mine, Magic_Source, NoneBonus]
 weights_bonus = [2, 1, 1, 4]
 
 
+# Test Audio
+pygame.mixer.music.load("resources/soundtrack/Basic_1_(Witcher).mp3")
+attack_sound_1 = pygame.mixer.Sound("resources/soundtrack/Attack_1.mp3")
+defence_sound_1 = pygame.mixer.Sound("resources/soundtrack/Defence_1.mp3")
+
 
 
 # Button properties
@@ -85,4 +91,11 @@ attack_button_y = 100
 defense_button_y = attack_button_y + button_height + button_spacing
 extinction_button_y = defense_button_y + button_height + button_spacing
 end_turn_button_y = extinction_button_y + button_height + button_spacing
+
+button_positions = {
+                "Attack": (button_x, attack_button_y),
+                "Defence": (button_x, defense_button_y),
+                "Extinct": (button_x, extinction_button_y),
+                "END TURN": (button_x, end_turn_button_y)
+            }
 

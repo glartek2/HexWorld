@@ -1,6 +1,6 @@
 import pygame
 import sys
-from draw_buttons import draw_button
+from draw_functions import draw_button
 from constant import WHITE, BLACK, screen_width, button_width, screen_height
 
 
@@ -54,7 +54,7 @@ def main_menu(screen):
 
         # Draw title
         title_font = pygame.font.Font("resources/fonts/vinque rg.otf", 64)
-        draw_text("Main Menu", title_font, WHITE, screen, screen_width // 2, screen_height // 4)
+        draw_text("HexWorld", title_font, WHITE, screen, screen_width // 2, screen_height // 4)
 
         # Draw "Play" button
         play_button_rect = draw_button(screen, "Play", "resources/buttons/button.png",

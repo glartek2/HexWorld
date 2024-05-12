@@ -4,12 +4,12 @@ import settings
 
 class Player:
     def __init__(self, name, player_number):
-        self.name = name                # Player Name
-        self.score = 0                  # Player Score
-        self.current_civ = None         # Player's current civilization
-        self.old_civ = None             # Player's last civilization
-        self.tiles = set()              # Player's tiles - map indexes
-        self.can_attack = set()         # Tiles that player can attack
+        self.name = name                                    # Player Name
+        self.score = 0                                      # Player Score
+        self.current_civ = None                             # Player's current civilization
+        self.old_civ = None                                 # Player's last civilization
+        self.tiles = set()                                  # Player's tiles - map indexes
+        self.can_attack = set()                             # Tiles that player can attack
         self.current_attack_power = 0
         self.player_number = player_number
         self.player_color = player_colors[player_number]
@@ -21,7 +21,10 @@ class Player:
 
         if tile in self.tiles:
             self.tiles.remove(tile)
-            self.current_civ.number -= 1
+            if self.current_civ:
+                self.current_civ.number -= 1
+            else:
+                self.old_civ.number -= 1
         else:
             self.tiles.add(tile)
 
@@ -36,9 +39,16 @@ class Player:
 
 
 
-    def new_turn(self):
-        print(self.current_civ.number)
-        self.current_attack_power = self.current_civ.number - len(self.tiles)
+    def new_turn(self, map_grid):
+
+        for row_in, col_in in self.tiles:
+            tile = map_grid[row_in][col_in]
+            tile.defence = tile.terrain.defence + 1
+
+        try:
+            self.current_attack_power = self.current_civ.number - len(self.tiles)
+        except AttributeError:
+            self.current_attack_power = 0
 
 
     def extinction(self):
@@ -46,13 +56,14 @@ class Player:
 
         self.old_civ = self.current_civ
         self.current_civ = None
+        self.current_attack_power = 0
         self.can_attack = set()
 
     def update_civ(self, civ):
         # set new civ
 
         self.current_civ = civ
-        self.current_attack_power = civ.number + 0
+        self.current_attack_power = civ.number
         map_height = settings.map_height
         map_width = settings.map_width
         self.can_attack = set((i, j) for i in range(map_height) for j in range(map_width))
@@ -62,7 +73,8 @@ class Player:
         # update list of possible tiles to attack
         map_height = settings.map_height
         map_width = settings.map_width
-        if len(self.tiles) == 0: self.can_attack = set((i, j) for i in range(map_height) for j in range(map_width))
+        if len(self.tiles) == 0:
+            self.can_attack = set((i, j) for i in range(map_height) for j in range(map_width))
         else:
             self.can_attack = set()
             for tile in self.tiles:
