@@ -9,6 +9,7 @@ class Player:
         self.current_civ = None                             # Player's current civilization
         self.old_civ = None                                 # Player's last civilization
         self.tiles = set()                                  # Player's tiles - map indexes
+        self.old_tiles = set()                              # Old civilization tiles
         self.can_attack = set()                             # Tiles that player can attack
         self.current_attack_power = 0
         self.player_number = player_number
@@ -30,7 +31,7 @@ class Player:
 
 
     def attack(self, tile):
-        if tile.terrain.isWater:
+        if tile.terrain.isWater and not self.current_civ.spieces.can_attack_water():
             return 0
         if self.current_attack_power >= tile.defence:
             self.current_attack_power -= tile.defence
@@ -56,6 +57,8 @@ class Player:
 
         self.old_civ = self.current_civ
         self.current_civ = None
+        self.old_tiles = self.tiles
+        self.tiles = set()
         self.current_attack_power = 0
         self.can_attack = set()
 
@@ -86,5 +89,5 @@ class Player:
                 for pos in positions:
                     x = tile[0] + pos[0] * is_even
                     y = tile[1] + pos[1] * is_even
-                    if x >= 0 and x < map_height and y >= 0 and y < map_width and (x, y) not in self.tiles:
+                    if 0 <= x < map_height and 0 <= y < map_width and (x, y) not in self.tiles:
                         self.can_attack.add((x, y))

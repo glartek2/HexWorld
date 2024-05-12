@@ -48,11 +48,11 @@ Water_image = pygame.image.load("resources/terrains/water.png")
 Forest_image = pygame.image.load("resources/terrains/forest.png")
 
 # Define Terrains
-Desert = t.Terrain(Desert_image, 2)
-Field = t.Terrain(Field_image, 2)
-Water = t.Terrain(Water_image, 2, isWater=True)
-Mountain = t.Terrain(Mountain_image, 3)
-Forest = t.Terrain(Forest_image, 2)
+Desert = t.Terrain("Desert", Desert_image, 2)
+Field = t.Terrain("Field", Field_image, 2)
+Water = t.Terrain("Water", Water_image, 2, isWater=True)
+Mountain = t.Terrain("Mountain", Mountain_image, 3)
+Forest = t.Terrain("Forest", Forest_image, 2)
 Terrains = [Desert, Field, Water, Mountain, Forest]
 
 
@@ -63,14 +63,14 @@ Magic_Source_image = pygame.image.load("resources/bons/magic_source.png")
 
 
 # Define Bonuses
-Fruits = bons.Bonus(pygame.transform.scale(Fruits_image,
-                                        (Fruits_image.get_width() * scale, Fruits_image.get_height() * scale )))
-Mine = bons.Bonus(pygame.transform.scale(Mine_image,
-                                        (Mine_image.get_width() * scale, Mine_image.get_height() * scale )))
-Magic_Source = bons.Bonus(pygame.transform.scale(Magic_Source_image,
-                                        (Magic_Source_image.get_width() * scale, Magic_Source_image.get_height() * scale )))
+Fruits = bons.Bonus("Fruits", pygame.transform.scale(Fruits_image,
+                            (Fruits_image.get_width() * scale, Fruits_image.get_height() * scale)))
+Mine = bons.Bonus("Mine",pygame.transform.scale(Mine_image,
+                            (Mine_image.get_width() * scale, Mine_image.get_height() * scale)))
+Magic_Source = bons.Bonus("Magic_Source", pygame.transform.scale(Magic_Source_image,
+                            (Magic_Source_image.get_width() * scale, Magic_Source_image.get_height() * scale)))
 
-NoneBonus = bons.Bonus(None)
+NoneBonus = bons.Bonus(None, None)
 Bonuses = [Fruits, Mine, Magic_Source, NoneBonus]
 weights_bonus = [2, 1, 1, 4]
 
@@ -97,5 +97,5 @@ button_positions = {
                 "Defence": (button_x, defense_button_y),
                 "Extinct": (button_x, extinction_button_y),
                 "END TURN": (button_x, end_turn_button_y)
-            }
+                }
 

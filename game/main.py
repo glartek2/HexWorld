@@ -22,22 +22,22 @@ font = pygame.font.Font("resources/fonts/vinque rg.otf", 24)
 players = []
 
 # TEST
-simple_spieces = spieces.Spieces(7)
+simple_spieces = spieces.Spieces("Simple", 7)
 simple_ability = abilities.Abilities(4)
 
 simple_civ = civilization.Civilization(simple_spieces, simple_ability)
 
-simple_spieces_2 = spieces.Spieces(7)
+simple_spieces_2 = spieces.Spieces("Trytons", 7)
 simple_ability_2 = abilities.Abilities(4)
 
 simple_civ_2 = civilization.Civilization(simple_spieces_2, simple_ability_2)
 
-simple_spieces_3 = spieces.Spieces(7)
+simple_spieces_3 = spieces.Spieces("Simple", 7)
 simple_ability_3 = abilities.Abilities(4)
 
 simple_civ_3 = civilization.Civilization(simple_spieces_3, simple_ability_3)
 
-simple_spieces_4 = spieces.Spieces(7)
+simple_spieces_4 = spieces.Spieces("Simple", 7)
 simple_ability_4 = abilities.Abilities(4)
 
 simple_civ_4 = civilization.Civilization(simple_spieces_4, simple_ability_4)
@@ -76,7 +76,7 @@ def main_loop():
             current_player = players[0]
             # Test
             for idx, player in enumerate(players):
-                player.update_civ(civs[0])
+                player.update_civ(civs[idx])
                 player.update_tiles((idx, idx))
                 player.update_can_attack()
             # Test
