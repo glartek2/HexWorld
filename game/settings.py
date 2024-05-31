@@ -13,6 +13,7 @@ font = pygame.font.Font("resources/fonts/vinque rg.otf", 64)
 map_width = map_width
 map_height = map_height
 
+
 # Create players
 def create_players(num):
     for i in range(num):
@@ -28,6 +29,7 @@ def update_players(num):
     if num_players > 4:
         num_players = 4
 
+
 def update_map_size(rows_change, cols_change):
     global map_width, map_height
     map_width += cols_change
@@ -36,6 +38,7 @@ def update_map_size(rows_change, cols_change):
         map_width = 3
     if map_height < 5:
         map_height = 5
+
 
 # Function to display settings window
 def settings(screen):

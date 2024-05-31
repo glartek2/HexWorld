@@ -1,9 +1,9 @@
-import abilities
+import ability
 import spieces
 
 
 class Civilization():
-    def __init__(self, spieces, abilities):
+    def __init__(self, spieces, ability):
         self.spieces = spieces
-        self.ability = abilities
-        self.number = spieces.number + abilities.number
+        self.ability = ability
+        self.number = spieces.number + ability.number

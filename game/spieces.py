@@ -9,21 +9,26 @@ class Spieces():
         match self.name:
             case "Trytons":
                 return True
-        return False
+            case _:
+                return False
 
-    def bonus_points(self):
+    def bonus_score(self):
         match self.name:
             case "Dwarves":
-                return "Mines", 2
+                return "Mine", 2
             case "Humans":
-                return "Plains", 1
+                return "Field", 1
             case "Sorcerers":
                 return "Magic_Source", 2
+            case _:
+                return None, 0
 
     def bonus_defence(self):
         match self.name:
             case "Beastmans":
                 return "Forest", 1
+            case _:
+                return None, 0
 
     def bonus_attack(self):
         match self.name:
@@ -31,11 +36,15 @@ class Spieces():
                 return "Mountain", 2
             case "Beastmans":
                 return "Forest", 1
+            case _:
+                return None, 0
 
     def bonus_attack_power(self):
         match self.name:
             case "Sorcereres":
                 return "Magic_Source", 1
+            case _:
+                return None, 0
 
     def death_handling(self):
         match self.name:

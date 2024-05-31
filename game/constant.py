@@ -75,7 +75,7 @@ Bonuses = [Fruits, Mine, Magic_Source, NoneBonus]
 weights_bonus = [2, 1, 1, 4]
 
 
-# Test Audio
+# Simple Audio
 pygame.mixer.music.load("resources/soundtrack/Basic_1_(Witcher).mp3")
 attack_sound_1 = pygame.mixer.Sound("resources/soundtrack/Attack_1.mp3")
 defence_sound_1 = pygame.mixer.Sound("resources/soundtrack/Defence_1.mp3")
