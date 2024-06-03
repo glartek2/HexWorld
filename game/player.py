@@ -20,7 +20,7 @@ class Player:
     def update_tiles(self, tile):
         if tile in self.tiles:
             self.tiles.remove(tile)
-            if self.current_civ and self.current_civ.spieces.death_handling():
+            if self.current_civ and self.current_civ.species.death_handling():
                 self.current_civ.number -= 1
             elif self.old_civ:
                 self.old_civ.number -= 1
@@ -28,10 +28,10 @@ class Player:
             self.tiles.add(tile)
 
     def attack(self, tile):
-        if tile.terrain.isWater and not self.current_civ.spieces.can_attack_water():
+        if tile.terrain.isWater and not self.current_civ.species.can_attack_water():
             return 0
 
-        bonus_attack_name, bonus_attack_value = self.current_civ.spieces.bonus_attack()
+        bonus_attack_name, bonus_attack_value = self.current_civ.species.bonus_attack()
         if bonus_attack_name != tile.terrain:
             bonus_attack_value = 0
 
@@ -61,7 +61,7 @@ class Player:
             if self.current_civ.ability.bonus_current_power() and turn_counter % 2 == 0:
                 self.current_attack_power *= 2
 
-            race_bonus_name, race_bonus_value = self.current_civ.spieces.bonus_attack_power()
+            race_bonus_name, race_bonus_value = self.current_civ.species.bonus_attack_power()
             for row, col in self.tiles:
                 tile = map_grid[row][col]
                 if tile.terrain.name == race_bonus_name or tile.bonus.name == race_bonus_name:
@@ -70,7 +70,7 @@ class Player:
             self.current_attack_power = 0
 
     def extinction(self):
-        if not self.current_civ.spieces.special_extinction():
+        if not self.current_civ.species.special_extinction():
             self.current_attack_power = 0
             self.old_tiles = self.tiles
             self.tiles = set()
@@ -84,6 +84,7 @@ class Player:
         self.current_attack_power = civ.number
         map_height, map_width = settings.map_height, settings.map_width
         self.can_attack = {(i, j) for i in range(map_height) for j in range(map_width)}
+        self.score += self.current_civ.ability.bonus_start_score()
 
     def update_can_attack(self):
         map_height, map_width = settings.map_height, settings.map_width

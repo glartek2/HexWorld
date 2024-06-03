@@ -2,6 +2,8 @@ import bons
 import terrain as t
 import math
 import pygame
+import ability
+import species
 
 pygame.mixer.init()
 
@@ -99,3 +101,29 @@ button_positions = {
                 "END TURN": (button_x, end_turn_button_y)
                 }
 
+
+
+base_number_of_units = map_width * map_height // 4
+base_scale = (map_width * map_height) // (4 * 12)
+
+abilities = [
+    ability.AbilityFactory.create_ability("Ancient", base_number_of_units),
+    ability.AbilityFactory.create_ability("Flying", base_number_of_units // 2 * base_scale),
+    ability.AbilityFactory.create_ability("Dino Tamers", base_number_of_units),
+    ability.AbilityFactory.create_ability("Fortress", base_number_of_units - 4 * base_scale),
+    ability.AbilityFactory.create_ability("Wealthy", base_number_of_units + 4 * base_scale),
+    ability.AbilityFactory.create_ability("Victorious", base_number_of_units // 2 * ( base_scale)),
+    ability.AbilityFactory.create_ability("Hungry", base_number_of_units - 2 * base_scale),
+    ability.AbilityFactory.create_ability("Lykanous", base_number_of_units - 3 * base_scale)
+]
+
+species = [
+    species.SpeciesFactory.create_species("Humans", base_number_of_units),
+    species.SpeciesFactory.create_species("Dwarves", base_number_of_units // 2 * base_scale + 1 * base_scale),
+    species.SpeciesFactory.create_species("Trytons", base_number_of_units),
+    species.SpeciesFactory.create_species("Sorcerers", base_number_of_units // 2 * base_scale),
+    species.SpeciesFactory.create_species("Beastmans", base_number_of_units - 1 * base_scale),
+    species.SpeciesFactory.create_species("Giants", base_number_of_units - 2 * base_scale),
+    species.SpeciesFactory.create_species("Elves", base_number_of_units - 1 * base_scale),
+    species.SpeciesFactory.create_species("Ghouls", int(base_number_of_units * 2 // 1.5 * base_scale))
+]

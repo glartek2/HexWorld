@@ -43,7 +43,7 @@ def perform_attack(row, col, map_grid, current_player):
             update_players_after_attack(row, col, map_grid)
             current_player.update_tiles((row, col))
 
-            bonus_defence_name, bonus_defence_value = current_player.current_civ.spieces.bonus_defence()
+            bonus_defence_name, bonus_defence_value = current_player.current_civ.species.bonus_defence()
             if bonus_defence_name == tile.terrain:
                 tile.defence += bonus_defence_value
 
@@ -57,7 +57,7 @@ def update_players_after_attack(row, col, map_grid):
             tile = map_grid[row][col]
 
             player.current_attack_power += tile.defence
-            bonus_defence_name, bonus_defence_value = player.current_civ.spieces.bonus_defence()
+            bonus_defence_name, bonus_defence_value = player.current_civ.species.bonus_defence()
             if bonus_defence_name == tile.terrain:
                 tile.defence -= bonus_defence_value
 

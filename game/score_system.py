@@ -9,8 +9,8 @@ def update_score(map_grid, player):
 
     def apply_bonus(civ):
         if civ:
-            spieces_bonus_name, spieces_bonus_value = civ.spieces.bonus_score()
-            bonus_points(map_grid, player, spieces_bonus_name, spieces_bonus_value)
+            species_bonus_name, species_bonus_value = civ.species.bonus_score()
+            bonus_points(map_grid, player, species_bonus_name, species_bonus_value)
 
             ability_bonus_name, ability_bonus_value = civ.ability.bonus_score_on_tile()
             bonus_points(map_grid, player, ability_bonus_name, ability_bonus_value)

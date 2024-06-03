@@ -6,6 +6,7 @@ from constant import (
     screen_width, screen_height
 )
 
+
 # Function to draw buttons with text and image
 def draw_button(screen, text, image_path, x, y):
     font = pygame.font.Font("resources/fonts/VTCGoblinHand.ttf", 28)
@@ -19,12 +20,20 @@ def draw_button(screen, text, image_path, x, y):
     button_image_rect = image.get_rect(center=button_rect.center)
     screen.blit(image, button_image_rect)
 
+    # Adjust font size to fit text within the button
+    max_width = button_width - 20  # Padding from the edges
+    text_surface = font.render(text, True, WHITE)
+    while text_surface.get_width() > max_width:
+        font_size = font.get_height() - 1
+        font = pygame.font.Font("resources/fonts/VTCGoblinHand.ttf", font_size)
+        text_surface = font.render(text, True, WHITE)
+
     # Draw text on button
-    text_surface = font.render(text, True, BLACK)
     text_rect = text_surface.get_rect(center=button_rect.center)
     screen.blit(text_surface, text_rect)
 
     return button_rect
+
 
 # Function to draw circles on tiles
 def draw_circle_on_tiles(screen, current_player, map_grid, tiles):
@@ -36,6 +45,7 @@ def draw_circle_on_tiles(screen, current_player, map_grid, tiles):
 
         pygame.draw.circle(screen, current_player.player_color, (center_x, center_y),
                            int(tile_width / 2 * scale), 3)
+
 
 # Function to draw the extinction confirmation window
 def draw_extinction_window(screen):
@@ -54,11 +64,13 @@ def draw_extinction_window(screen):
 
     return yes_button_rect, no_button_rect
 
+
 # Function to draw tiles
 def draw_tiles(screen, map_grid):
     for row in map_grid:
         for tile in row:
             tile.draw(screen, offset_x, gap, offset_y)
+
 
 # Function to create a hexagon shape surface
 def create_hexagon_clip(surface, center_x, center_y, radius, R, G, B, color_diff=0):
@@ -68,6 +80,7 @@ def create_hexagon_clip(surface, center_x, center_y, radius, R, G, B, color_diff
     ]
     pygame.draw.polygon(surface, (R, G, B, 150 - color_diff), hexagon_points)
     return surface
+
 
 # Function to draw a single player's tile
 def draw_single_player_tile(screen, map_grid, player, row_in, col_in, color_diff=0):
@@ -80,6 +93,7 @@ def draw_single_player_tile(screen, map_grid, player, row_in, col_in, color_diff
                                   radius, R, G, B, color_diff)
     screen.blit(surface, (center_x, center_y))
 
+
 # Function to draw all player tiles
 def draw_player_tiles(screen, map_grid, players):
     for player in players:
@@ -88,7 +102,9 @@ def draw_player_tiles(screen, map_grid, players):
         for row_in, col_in in player.old_tiles:
             draw_single_player_tile(screen, map_grid, player, row_in, col_in, 70)
 
+
 # Function to write text on the screen
 def write_text(screen, text, font, pos_x, pos_y):
     text_surface = font.render(text, True, WHITE)
-    screen.blit(text_surface, (pos_x, pos_y))
+    text_rect = text_surface.get_rect(center=(pos_x, pos_y))
+    screen.blit(text_surface, text_rect)
