@@ -1,1 +1,1 @@
-# python_lecture_project
+# HexWorld
