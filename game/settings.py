@@ -17,7 +17,7 @@ input_font = pygame.font.Font(None, 32)
 map_width = map_width
 map_height = map_height
 
-# TextInputBox class
+
 class TextInputBox:
     def __init__(self, x, y, w, h, text=''):
         self.rect = pygame.Rect(x, y, w, h)

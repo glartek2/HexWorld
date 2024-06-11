@@ -32,7 +32,7 @@ class Player:
             return 0
 
         bonus_attack_name, bonus_attack_value = self.current_civ.species.bonus_attack()
-        if bonus_attack_name != tile.terrain:
+        if bonus_attack_name != tile.terrain.name:
             bonus_attack_value = 0
 
         self.score += self.current_civ.ability.bonus_score_on_attack()
@@ -81,7 +81,7 @@ class Player:
 
     def update_civ(self, civ):
         self.current_civ = civ
-        self.current_attack_power = civ.number
+        self.current_attack_power += civ.number
         map_height, map_width = settings.map_height, settings.map_width
         self.can_attack = {(i, j) for i in range(map_height) for j in range(map_width)}
         self.score += self.current_civ.ability.bonus_start_score()

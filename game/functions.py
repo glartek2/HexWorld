@@ -70,18 +70,22 @@ def perform_defence(row, col, map_grid, current_player):
         current_player.current_attack_power -= 1
         tile = map_grid[row][col]
 
-        bonus_defence, flag = current_player.current_civ.ability.bonus_defence()
+        bonus_defence_ability, flag = current_player.current_civ.ability.bonus_defence()
+        bonus_terrain_name, bonus_defence_species = current_player.current_civ.species.bonus_defence()
         if flag:
             if current_player.player_first_defence:
-                tile.defence += 1 + bonus_defence
+                tile.defence += 1 + bonus_defence_ability
                 current_player.player_first_defence = False
             else:
                 tile.defence += 1
         else:
-            tile.defence += 1 + bonus_defence
+            tile.defence += 1 + bonus_defence_ability
+
+        if tile.terrain.name == bonus_terrain_name:
+            tile.defence += bonus_defence_species
 
 
 def switch_turns(map_grid, current_player, turn_counter):
     next_player = players[(current_player.player_number + 1) % len(players)]
-    next_player.new_turn(map_grid, turn_counter)
+    next_player.new_turn(map_grid, turn_counter//len(players))
     return next_player
